@@ -4,6 +4,8 @@ import Navbar from './components/Navbar'
 import Login from './pages/Login';
 import Home from './pages/Home'
 import Register from './pages/Register';
+import { ToggleSwitch } from "./projects/ToggleSwitch";
+
 
 const App = () => {
   return (
