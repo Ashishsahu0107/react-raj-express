@@ -18,12 +18,12 @@ const Login = () => {
                         </div>
                         <div className='grid gap-2 '>
                             <label htmlFor="email">Email</label>
-                            <input type="email" name="" id="email" placeholder='Enter your Email' className='py-2 px-1 border border-[#C2410C] rounded focus:shadow-orange-500 focus:outline-[#C2410C] focus:outline-2'/>
+                            <input type="email" name="" id="email" placeholder='Enter your Email' className='py-2 px-1 border border-[#C2410C] rounded focus:shadow-orange-500 focus:outline-[#C2410C] focus:outline-2' />
                         </div>
                         <div className='grid gap-2  relative'>
                             <label htmlFor="password">Password</label>
                             <input type="password" name="" id="password" placeholder='Enter your password' className='py-2 px-1 border border-[#C2410C] rounded focus:shadow-orange-500 focus:outline-[#C2410C] focus:outline-2' />
-                            <FontAwesomeIcon icon={faEye} className='absolute right-2 top-[46px] text-gray-400'/>
+                            <FontAwesomeIcon icon={faEye} className='absolute right-2 top-[46px] text-gray-400' />
                         </div>
                         <div className='flex justify-between items-center'>
                             <div className='flex gap-1'>
