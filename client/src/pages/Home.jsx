@@ -10,13 +10,13 @@ const Home = () => {
                         <div>
                             <img src={currElem.img_url} alt="qot.png" width="30%" />
                         </div>
-                        <h2>Name: {currElem.name}</h2>
+                        <h2 className='h1'>Name: {currElem.name}</h2>
                         <h3>Rating: {currElem.rating} </h3>
                         <p>Summary: {currElem.description} </p>
                         <p>Genre: {currElem.genre} </p>
                         <p>Cast: {currElem.cast}</p>
                         <a href={currElem.watch_url} target="_blank">
-                            <button>Watch Now</button>
+                            <button className='btn bg-black text-white font-bold '>Watch Now</button>
                         </a>
                     </li>
                 )
