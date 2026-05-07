@@ -10,7 +10,7 @@ import {
 const Footer = () => {
   return (
     <>
-      <footer className="bg-[#f8f9fc] pt-16 lg:pt-24 pb-10 overflow-hidden">
+      <footer className="bg-[#f8f9fc] pt-16 lg:pt-24 pb-10 border-top border-[1px] border-gray-300 overflow-hidden">
 
         <div className="max-w-7xl mx-auto px-6">
 
@@ -250,7 +250,7 @@ const Footer = () => {
               Designed by
               {" "}
               <span className="text-blue-600 cursor-pointer">
-                BootstrapMade
+                TailwindcssMade
               </span>
 
             </p>
