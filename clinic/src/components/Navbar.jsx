@@ -14,7 +14,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-gray-100 shadow-sm relative z-50">
+      <nav className="bg-gray-100 shadow-sm relative z-50 fixed top-0">
 
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 

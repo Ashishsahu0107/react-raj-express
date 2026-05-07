@@ -5,23 +5,21 @@ const AboutSection = () => {
   return (
     <section className="bg-white py-24">
 
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 gap-10 items-center">
+      <div className="max-w-6xl mx-auto grid grid-cols-2 gap-5 items-center">
 
         {/* Left */}
         <div>
 
-          <h1 className="text-4xl font-light leading-tight text-slate-900">
+          <h1 className="text-4xl font-light">
             Compassionate Care, Advanced Medicine
           </h1>
 
           <p className="text-gray-600 text-xl leading-7 mt-5">
-            For over two decades, we've been dedicated to providing
-            exceptional healthcare.
+            For over two decades, we've been dedicated to providing exceptional healthcare that combines cutting-edge medical technology with the personal touch our patients deserve.
           </p>
 
           <p className="text-gray-600 text-xl leading-7 mt-5">
-            Our multidisciplinary team of specialists works collaboratively
-            to ensure every patient receives comprehensive care.
+            Our multidisciplinary team of specialists works collaboratively to ensure every patient receives comprehensive care tailored to their unique needs. From preventive services to complex procedures, we maintain the highest standards of medical excellence while fostering an environment of trust and healing.
           </p>
 
           {/* Stats */}
@@ -71,9 +69,22 @@ const AboutSection = () => {
           <img
             src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?q=80&w=1200&auto=format&fit=crop"
             alt="hospital"
-            className="rounded-3xl w-full h-[550px] object-cover"
+            className="rounded-3xl w-full h-[500px] object-cover"
           />
 
+          {/* TOP Card */}
+          <div className="absolute top-[15px] right-[-20px] bg-[#175CDD] px-3 py-4 rounded-2xl shadow-xl flex items-center gap-6">
+            <div>
+              <h3 className="text-2xl text-center font-bold text-white">
+                25+
+              </h3>
+
+              <p className="text-gray-100 text-center text-sm mt-2">
+                Years of Trusted Care
+              </p>
+            </div>
+
+          </div>
           {/* Bottom Card */}
           <div className="absolute bottom-[-20px] left-[-30px] bg-white px-8 py-4 rounded-2xl shadow-xl flex items-center gap-6">
 

@@ -68,7 +68,7 @@ const FindDoctor = () => {
       rating: "4.5",
       reviews: "74 reviews",
       image:
-        "https://images.unsplash.com/photo-1612277795421-9bc7706a4a41?q=80&w=1200&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1582750433449-648ed127bb54?q=80&w=1200&auto=format&fit=crop",
       status: "bg-green-500",
       button: "Book Now",
     },
@@ -93,7 +93,7 @@ const FindDoctor = () => {
         {/* Heading */}
         <div className="text-center px-6">
 
-          <h2 className="text-3xl md:text-5xl font-light text-slate-900">
+          <h2 className="text-2xl md:text-4xl font-bold text-slate-900">
             Find A Doctor
           </h2>
 
@@ -112,19 +112,19 @@ const FindDoctor = () => {
         {/* Search Section */}
         <div className="max-w-5xl mx-auto mt-20 px-6 text-center">
 
-          <h1 className="text-3xl md:text-6xl font-light text-slate-900 leading-tight">
+          <h1 className="text-2xl md:text-5xl font-light text-slate-900 leading-tight">
             Find Your Perfect Healthcare Provider
           </h1>
 
-          <p className="text-gray-500 text-base md:text-xl mt-6">
+          <p className="text-gray-500 text-base md:text-1xl mt-6">
             Search through our comprehensive directory of experienced medical professionals
           </p>
 
           {/* Search Box */}
-          <div className="bg-white rounded-[30px] shadow-sm mt-10 p-4 flex flex-col lg:flex-row items-center gap-4 border border-gray-100">
+          <div className="bg-white rounded-[30px] shadow-sm mt-10 p-2 flex flex-col lg:flex-row items-center gap-4 border border-gray-100">
 
             {/* Input */}
-            <div className="flex items-center gap-3 w-full px-4">
+            <div className="flex items-center gap-3 w-full px-3">
 
               <FaUserMd className="text-gray-400 text-lg" />
 

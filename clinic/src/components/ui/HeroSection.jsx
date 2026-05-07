@@ -1,6 +1,5 @@
 import React from "react";
-// import AboutSection from "./AboutSection";
-// import DepartmentSection from "./DepartmentSection";
+
 
 import {
   FaShieldAlt,
@@ -127,17 +126,34 @@ const HeroSection = () => {
               className="rounded-[40px] w-full h-[600px] object-cover"
             />
 
+            <div className="absolute top-5 right-5 bg-white p-5 flex gap-8 rounded-2xl">
+              <div className="flex items-center justify-center text-4xl text-[#175CDD] ">
+                <FaClock />
+              </div>
+              <div className="grid gap-3">
+                <h1 className="font-bold leading-6">
+                  Next Available  <br /> Today 2:30 PM</h1>
+                <span className="opacity-50">Dr. Sarah Johnson</span>
+              </div>
+            </div>
+
+
+
+            <div className="absolute left-5 bottom-5 bg-white p-5 flex flex-col items-center justify-center gap-2 rounded-2xl">
+              <div className="flex gap-1 items-center justify-center text-1xl text-yellow-400">
+                <FaStar />
+                <FaStar />
+                <FaStar />
+                <FaStar />
+                <FaStar />
+              </div>
+              <h1 className="font-bold leading-6"> 4.9/5</h1>
+              <span className="opacity-50">1,234 Reviews</span>
+            </div>
           </div>
 
         </div>
       </section>
-
-      {/* <section>
-        {<AboutSection />}
-      </section>
-      <section>
-        {<DepartmentSection />}
-      </section> */}
     </>
   );
 };
