@@ -2,12 +2,15 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 import {
-  Building2,
-  CalendarDays,
-  LinkedinIcon,
-  Twitter,
-  Facebook,
+    CalendarDays,
+    Building2,
 } from "lucide-react";
+
+import {
+    FaLinkedinIn,
+    FaTwitter,
+    FaFacebookF,
+} from "react-icons/fa";
 
 const doctors = [
     {
@@ -80,52 +83,63 @@ const doctors = [
         experience: "13+ Years Experience",
         department: "Radiology Dept.",
         image:
-            "https://images.unsplash.com/photo-1612277795421-9bc7706a4a41?q=80&w=1200&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1200&auto=format&fit=crop",
     },
 ];
-
 
 const Doctors = () => {
     return (
         <div className="bg-white min-h-screen">
 
+            {/* ================= HERO ================= */}
+            <section className="py-14 px-4">
 
-            <section className="py-10 px-4 border-gray-200">
                 <div className="max-w-7xl mx-auto">
+
                     {/* Heading */}
                     <div className="max-w-4xl mx-auto text-center mb-20">
+
                         <motion.h1
-                            initial={{ opacity: 0, y: 40 }}
+                            initial={{ opacity: 0, y: 80 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6 }}
+                            transition={{
+                                duration: 0.7,
+                                type: "spring",
+                                stiffness: 80,
+                            }}
                             className="text-5xl md:text-6xl font-bold text-slate-900 mb-8"
                         >
                             Doctors
                         </motion.h1>
 
                         <motion.p
-                            initial={{ opacity: 0, y: 40 }}
+                            initial={{ opacity: 0, y: 80 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.7, delay: 0.2 }}
-                            className="text-gray-500 text-lg leading-9 max-w-2xl mx-auto" // Added max-width for better readability
+                            transition={{
+                                duration: 0.8,
+                                delay: 0.2,
+                            }}
+                            className="text-gray-500 text-lg leading-9 max-w-2xl mx-auto"
                         >
-                            Odio et unde deleniti. Deserunt numquam exercitationem.
-                            Officiis quo odio sint voluptas consequatur ut a odio
-                            voluptatem. Sit dolorum debitis veritatis natus dolores.
-                            Quasi ratione sint. Sit quaerat ipsum dolorem.
+                            Meet our experienced and compassionate medical specialists
+                            dedicated to delivering world-class healthcare services.
                         </motion.p>
                     </div>
-
                 </div>
-                <div className="bg-[#F7F8F8] p-4">
-                    {/* Breadcrumb */}
+
+                {/* Breadcrumb */}
+                <div className="bg-[#F7F8F8] py-5 px-4 rounded-xl">
+
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 40 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.1 }} // Added delay for smoother sequence
-                        className="flex items-center  justify-start gap-3 text-lg max-w-7xl mx-auto" // Centered the breadcrumb
+                        transition={{ duration: 0.6 }}
+                        className="flex items-center gap-3 text-lg max-w-7xl mx-auto"
                     >
-                        <Link to="/" className="text-blue-600 font-medium cursor-pointer hover:text-blue-700 transition-colors duration-200">
+                        <Link
+                            to="/"
+                            className="text-blue-600 font-medium hover:text-blue-700 transition"
+                        >
                             Home
                         </Link>
 
@@ -139,31 +153,9 @@ const Doctors = () => {
             </section>
 
             {/* ================= DOCTORS GRID ================= */}
-            <section className="bg-[#f5f7fb] py-24 px-4 min-h-screen">
+            <section className=" py-10 px-4">
+
                 <div className="max-w-7xl mx-auto">
-
-                    {/* Heading */}
-                    <div className="text-center mb-20">
-
-                        <motion.h2
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6 }}
-                            className="text-5xl font-bold text-slate-900 mb-6"
-                        >
-                            Our Doctors
-                        </motion.h2>
-
-                        <motion.p
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.7, delay: 0.2 }}
-                            className="max-w-3xl mx-auto text-gray-500 leading-8 text-lg"
-                        >
-                            Meet our experienced and compassionate medical specialists
-                            dedicated to delivering world-class healthcare services.
-                        </motion.p>
-                    </div>
 
                     {/* Grid */}
                     <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -171,47 +163,68 @@ const Doctors = () => {
                         {doctors.map((doctor, index) => (
                             <motion.div
                                 key={doctor.id}
-                                initial={{ opacity: 0, y: 70 }}
+                                initial={{ opacity: 0, y: 100 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{
-                                    duration: 0.6,
+                                    duration: 0.7,
                                     delay: index * 0.1,
+                                    type: "spring",
+                                    stiffness: 70,
                                 }}
-                                className="bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden group"
+                                whileHover={{
+                                    y: -10,
+                                    transition: { duration: 0.3 },
+                                }}
+                                className="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 group"
                             >
 
                                 {/* Top */}
-                                <div className="relative flex flex-col items-center pt-8 px-6">
+                                <div className="relative flex flex-col items-center pt-10 px-6">
 
-                                    {/* Image */}
+                                    {/* Image Wrapper */}
                                     <div className="relative">
 
-                                        <img
+                                        <motion.img
+                                            whileHover={{ scale: 1.08 }}
+                                            transition={{ duration: 0.4 }}
                                             src={doctor.image}
                                             alt={doctor.name}
-                                            className="w-28 h-28 rounded-full object-cover border-4 border-white shadow-lg"
+                                            className="w-40 h-40 rounded-full object-cover border-4 border-white shadow-xl"
                                         />
 
-                                        {/* Social Hover */}
-                                        <div className="absolute inset-0 rounded-full bg-blue-600/70 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition duration-300">
+                                        {/* Social Icons */}
+                                        <motion.div
+                                            initial={{ opacity: 0 }}
+                                            whileHover={{ opacity: 1 }}
+                                            className="absolute inset-0 rounded-full bg-blue-600/75 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-all duration-300"
+                                        >
 
-                                            <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center cursor-pointer">
-                                                <Linkedin className="w-4 h-4 text-blue-600" />
-                                            </div>
+                                            <motion.div
+                                                whileHover={{ scale: 1.2 }}
+                                                className="w-9 h-9 rounded-full bg-white flex items-center justify-center cursor-pointer"
+                                            >
+                                                <FaLinkedinIn className="w-4 h-4 text-blue-600" />
+                                            </motion.div>
 
-                                            <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center cursor-pointer">
-                                                <Twitter className="w-4 h-4 text-blue-500" />
-                                            </div>
+                                            <motion.div
+                                                whileHover={{ scale: 1.2 }}
+                                                className="w-9 h-9 rounded-full bg-white flex items-center justify-center cursor-pointer"
+                                            >
+                                                <FaTwitter className="w-4 h-4 text-sky-500" />
+                                            </motion.div>
 
-                                            <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center cursor-pointer">
-                                                <Facebook className="w-4 h-4 text-blue-700" />
-                                            </div>
-                                        </div>
+                                            <motion.div
+                                                whileHover={{ scale: 1.2 }}
+                                                className="w-9 h-9 rounded-full bg-white flex items-center justify-center cursor-pointer"
+                                            >
+                                                <FaFacebookF className="w-4 h-4 text-blue-700" />
+                                            </motion.div>
+                                        </motion.div>
                                     </div>
 
-                                    {/* Info */}
-                                    <div className="text-center mt-6">
+                                    {/* Content */}
+                                    <div className="text-center mt-7">
 
                                         <h3 className="text-2xl font-bold text-slate-900 mb-2">
                                             {doctor.name}
@@ -221,13 +234,13 @@ const Doctors = () => {
                                             {doctor.specialty}
                                         </p>
 
-                                        <p className="text-gray-500 text-sm leading-7 mb-6">
+                                        <p className="text-gray-500 text-sm leading-7 mb-7">
                                             Lorem ipsum dolor sit amet consectetur adipisicing elit.
                                             Sed do eiusmod tempor incididunt ut labore.
                                         </p>
 
                                         {/* Details */}
-                                        <div className="space-y-3 text-sm text-gray-600 mb-8">
+                                        <div className="space-y-4 text-sm text-gray-600 mb-8">
 
                                             <div className="flex items-center justify-center gap-2">
                                                 <CalendarDays className="w-4 h-4 text-blue-600" />
@@ -241,9 +254,15 @@ const Doctors = () => {
                                         </div>
 
                                         {/* Button */}
-                                        <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-medium transition-all duration-300">
+                                        <motion.button
+                                            whileHover={{
+                                                scale: 1.05,
+                                            }}
+                                            whileTap={{ scale: 0.95 }}
+                                            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-medium transition-all duration-300 mb-8"
+                                        >
                                             Book Appointment
-                                        </button>
+                                        </motion.button>
                                     </div>
                                 </div>
                             </motion.div>

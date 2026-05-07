@@ -6,9 +6,14 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import About from "./pages/About";
 import Contact from "./pages/ContactSection";
-import Departments from './components/MedicalTabs'
-import Services from './components/Services'
+import Departments from "./components/MedicalTabs";
+import Services from "./components/Services";
 import Doctors from "./components/Doctors";
+import ScrollToTop from "./components/ScrollToTop";
+import Error from "./components/morePages/Error";
+import Privacy from "./components/morePages/Privacy";
+import Gallery from "./components/morePages/Gallery";
+
 
 import HeroSection from "./components/ui/HeroSection";
 import AboutSection from "./components/ui/AboutSection";
@@ -35,38 +40,25 @@ const Home = () => {
 const App = () => {
   return (
     <BrowserRouter>
-
       <Topbar />
       <Navbar />
+      <ScrollToTop />
+      {/* Fixed navbar spacing */}
+      <main className="pt-[70px]">
+        {/* All Routes / Pages */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/departments" element={<Departments />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/doctors" element={<Doctors />} />
+          <Route path="/error" element={<Error />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/gallery" element={<Gallery/>} />
+        </Routes>
+      </main>
 
-      <Routes>
-
-        <Route
-          path="/"
-          element={<Home />}
-        />
-        <Route
-          path="/about"
-          element={<About />}
-        />
-        <Route
-          path="/contact"
-          element={<Contact />}
-        />
-        <Route
-          path="/departments"
-          element={<Departments />}
-        />
-        <Route
-          path="/services"
-          element={<Services />}
-        />
-        <Route
-          path="/doctors"
-          element={<Doctors />}
-        />
-
-      </Routes>
       <Footer />
     </BrowserRouter>
   );

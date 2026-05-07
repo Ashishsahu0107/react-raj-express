@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+// src/components/Navbar.jsx
+
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 import {
@@ -7,334 +9,342 @@ import {
   IoClose,
 } from "react-icons/io5";
 
+const TOPBAR_HEIGHT = 48;
+
+const morePages = [
+  {
+    label: "Department Details",
+    path: "/department-details",
+  },
+  {
+    label: "Service Details",
+    path: "/service-details",
+  },
+  {
+    label: "Appointment",
+    path: "/appointment",
+  },
+  {
+    label: "Testimonials",
+    path: "/testimonials",
+  },
+  {
+    label: "Frequently Asked Questions",
+    path: "/frequentlyAskedQuestions",
+  },
+  {
+    label: "Gallery",
+    path: "/gallery",
+  },
+  {
+    label: "Terms",
+    path: "/terms",
+  },
+  {
+    label: "Privacy",
+    path: "/privacy",
+  },
+  {
+    label: "404",
+    path: "/error",
+  },
+];
+
+const dropdownItems = [
+  {
+    label: "Item 1",
+    path: "/item1",
+  },
+  {
+    label: "Item 2",
+    path: "/item2",
+  },
+  {
+    label: "Item 3",
+    subItems: [
+      {
+        label: "Sub Item 1",
+        path: "/subitem1",
+      },
+      {
+        label: "Sub Item 2",
+        path: "/subitem2",
+      },
+      {
+        label: "Sub Item 3",
+        path: "/subitem3",
+      },
+      {
+        label: "Sub Item 4",
+        path: "/subitem4",
+      },
+    ],
+  },
+  {
+    label: "Item 4",
+    path: "/item4",
+  },
+];
+
 const Navbar = () => {
-  const [dropdown, setDropdown] = useState(false);
-  const [dropdown1, setDropdown1] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
 
+  const [morePagesOpen, setMorePagesOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  const morePagesRef = useRef(null);
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > TOPBAR_HEIGHT) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        morePagesRef.current &&
+        !morePagesRef.current.contains(event.target)
+      ) {
+        setMorePagesOpen(false);
+      }
+
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target)
+      ) {
+        setDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <>
-      <nav className="bg-gray-100 shadow-sm relative z-50 fixed top-0">
+    <nav
+      className={`fixed left-0 w-full z-50 bg-gray-100 shadow-sm transition-all duration-300
+      ${isScrolled ? "top-0" : "top-10"}`}
+    >
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        {/* Logo */}
+        <Link
+          to="/"
+          className="text-3xl lg:text-4xl font-bold text-slate-900"
+        >
+          Clinic
+        </Link>
 
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setMobileMenu(!mobileMenu)}
+          className="lg:hidden text-4xl text-slate-900"
+        >
+          {mobileMenu ? <IoClose /> : <IoMenu />}
+        </button>
 
-          {/* Logo */}
-          <Link
-            to="/"
-            className="text-3xl lg:text-4xl font-bold text-slate-900"
-          >
-            Clinic
-          </Link>
+        {/* Menu */}
+        <ul
+          className={`lg:flex lg:items-center lg:gap-6 text-xl font-medium text-gray-700
+          ${
+            mobileMenu
+              ? "absolute top-full left-0 w-full bg-white flex flex-col p-6 gap-4 shadow-xl"
+              : "hidden"
+          }`}
+        >
+          {/* Home */}
+          <li className="relative group">
+            <Link to="/" className="text-blue-600">
+              Home
+            </Link>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMobileMenu(!mobileMenu)}
-            className="lg:hidden text-4xl text-slate-900"
-          >
+            <span className="absolute left-0 -bottom-1 h-[3px] w-full bg-blue-600"></span>
+          </li>
 
-            {mobileMenu ? <IoClose /> : <IoMenu />}
-
-          </button>
-
-          {/* Menu */}
-          <ul
-            className={`lg:flex lg:items-center lg:gap-6 text-xl font-medium text-gray-700
-            ${
-              mobileMenu
-                ? "absolute top-full left-0 w-full bg-white flex flex-col p-6 gap-4 shadow-xl"
-                : "hidden"
-            }`}
-          >
-
-            {/* Home */}
-            <li className="relative group">
-
-              <Link
-                to="/"
-                className="text-blue-600"
-              >
-                Home
-              </Link>
-
-              <span className="absolute left-0 -bottom-1 h-[3px] w-full bg-blue-600"></span>
-
-            </li>
-
-            {/* About */}
-            <li className="relative group">
-
-              <Link
-                to="/about"
-                className="hover:text-blue-600 transition duration-300"
-              >
-                About
-              </Link>
-
-              <span className="absolute left-0 -bottom-1 h-[3px] w-0 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-
-            </li>
-
-            {/* Departments */}
-            <li className="relative group">
-
-              <Link
-                to="/departments"
-                className="group-hover:text-blue-600 transition duration-300"
-              >
-                Departments
-              </Link>
-
-              <span className="absolute left-0 -bottom-1 h-[3px] w-0 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-
-            </li>
-
-            {/* Services */}
-            <li className="relative group">
-
-              <Link
-                to="/services"
-                className="group-hover:text-blue-600 transition duration-300"
-              >
-                Services
-              </Link>
-
-              <span className="absolute left-0 -bottom-1 h-[3px] w-0 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-
-            </li>
-
-            {/* Doctors */}
-            <li className="relative group">
-
-              <Link
-                to="/doctors"
-                className="group-hover:text-blue-600 transition duration-300"
-              >
-                Doctors
-              </Link>
-
-              <span className="absolute left-0 -bottom-1 h-[3px] w-0 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-
-            </li>
-
-            {/* More Pages Dropdown */}
-            <li
-              className="relative group"
-              onMouseEnter={() => setDropdown(true)}
-              onMouseLeave={() => setDropdown(false)}
+          {/* About */}
+          <li className="relative group">
+            <Link
+              to="/about"
+              className="hover:text-blue-600 transition duration-300"
             >
+              About
+            </Link>
 
-              {/* Button */}
-              <div
-                onClick={() => setDropdown(!dropdown)}
-                className="flex items-center gap-1 cursor-pointer hover:text-blue-600 group-hover:text-blue-600 transition duration-300"
-              >
+            <span className="absolute left-0 -bottom-1 h-[3px] w-0 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+          </li>
 
-                <span className="group-hover:text-blue-600 transition duration-300">
-                  More Pages
-                </span>
+          {/* Departments */}
+          <li className="relative group">
+            <Link
+              to="/departments"
+              className="group-hover:text-blue-600 transition duration-300"
+            >
+              Departments
+            </Link>
 
-                <IoChevronDownOutline />
+            <span className="absolute left-0 -bottom-1 h-[3px] w-0 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+          </li>
 
-              </div>
+          {/* Services */}
+          <li className="relative group">
+            <Link
+              to="/services"
+              className="group-hover:text-blue-600 transition duration-300"
+            >
+              Services
+            </Link>
 
-              {/* Dropdown */}
-              {dropdown && (
-                <div className="lg:absolute lg:top-12 lg:left-0 lg:w-64 bg-white rounded-xl shadow-xl py-4 z-50 mt-3 lg:mt-0">
+            <span className="absolute left-0 -bottom-1 h-[3px] w-0 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+          </li>
 
-                  <ul className="flex flex-col text-gray-700">
+          {/* Doctors */}
+          <li className="relative group">
+            <Link
+              to="/doctors"
+              className="group-hover:text-blue-600 transition duration-300"
+            >
+              Doctors
+            </Link>
 
-                    <li>
-                      <Link
-                        to="/department-details"
-                        onClick={() => setDropdown(false)}
-                        className="block px-6 py-3 hover:bg-gray-100"
-                      >
-                        Department Details
-                      </Link>
-                    </li>
+            <span className="absolute left-0 -bottom-1 h-[3px] w-0 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+          </li>
 
-                    <li>
-                      <Link
-                        to="/service-details"
-                        onClick={() => setDropdown(false)}
-                        className="block px-6 py-3 hover:bg-gray-100"
-                      >
-                        Service Details
-                      </Link>
-                    </li>
+          {/* More Pages */}
+          <li
+            ref={morePagesRef}
+            className="relative"
+            onMouseEnter={() => setMorePagesOpen(true)}
+          >
+            <div className="flex items-center gap-1 cursor-pointer hover:text-blue-600 transition duration-300">
+              <span>More Pages</span>
 
-                    <li>
-                      <Link
-                        to="/appointment"
-                        onClick={() => setDropdown(false)}
-                        className="block px-6 py-3 hover:bg-gray-100"
-                      >
-                        Appointment
-                      </Link>
-                    </li>
-
-                    <li>
-                      <Link
-                        to="/gallery"
-                        onClick={() => setDropdown(false)}
-                        className="block px-6 py-3 hover:bg-gray-100"
-                      >
-                        Gallery
-                      </Link>
-                    </li>
-
-                  </ul>
-
-                </div>
-              )}
-
-            </li>
+              <IoChevronDownOutline
+                className={`transition duration-300 ${
+                  morePagesOpen ? "rotate-180" : ""
+                }`}
+              />
+            </div>
 
             {/* Dropdown */}
-            <li
-              className="relative"
-              onMouseEnter={() => setDropdown1(true)}
-              onMouseLeave={() => setDropdown1(false)}
-            >
-
-              {/* Button */}
-              <div
-                onClick={() => setDropdown1(!dropdown1)}
-                className="flex items-center gap-1 cursor-pointer hover:text-blue-600"
-              >
-
-                <span>
-                  Dropdown
-                </span>
-
-                <IoChevronDownOutline />
-
+            {morePagesOpen && (
+              <div className="absolute top-12 left-0 w-64 bg-white rounded-2xl shadow-2xl py-4 z-50">
+                <ul className="flex flex-col text-gray-700">
+                  {morePages.map((item, index) => (
+                    <li key={index}>
+                      <Link
+                        to={item.path}
+                        onClick={() => setMorePagesOpen(false)}
+                        className="block px-6 py-3 hover:bg-gray-100 transition"
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </div>
+            )}
+          </li>
 
-              {/* Main Dropdown */}
-              {dropdown1 && (
-                <div className="lg:absolute lg:top-12 lg:left-0 lg:w-60 bg-white rounded-xl shadow-xl py-4 z-50 mt-3 lg:mt-0">
+          {/* Dropdown */}
+          <li
+            ref={dropdownRef}
+            className="relative"
+            onMouseEnter={() => setDropdownOpen(true)}
+          >
+            <div className="flex items-center gap-1 cursor-pointer hover:text-blue-600 transition duration-300">
+              <span>Dropdown</span>
 
-                  <ul className="flex flex-col text-gray-700">
+              <IoChevronDownOutline
+                className={`transition duration-300 ${
+                  dropdownOpen ? "rotate-180" : ""
+                }`}
+              />
+            </div>
 
-                    <li>
-                      <Link
-                        to="/item1"
-                        onClick={() => setDropdown1(false)}
-                        className="block px-6 py-3 hover:bg-gray-100"
-                      >
-                        Item 1
-                      </Link>
+            {/* Main Dropdown */}
+            {dropdownOpen && (
+              <div className="absolute top-12 left-0 w-60 bg-white rounded-2xl shadow-2xl py-4 z-50">
+                <ul className="flex flex-col text-gray-700">
+                  {dropdownItems.map((item, index) => (
+                    <li
+                      key={index}
+                      className={`relative ${
+                        item.subItems ? "group" : ""
+                      }`}
+                    >
+                      {item.subItems ? (
+                        <>
+                          <div className="flex items-center justify-between px-6 py-3 hover:bg-gray-100 cursor-pointer">
+                            <span>{item.label}</span>
+
+                            <IoChevronDownOutline className="-rotate-90" />
+                          </div>
+
+                          {/* Sub Dropdown */}
+                          <div className="absolute top-0 left-full w-56 bg-white rounded-2xl shadow-2xl py-3 hidden group-hover:block">
+                            <ul className="flex flex-col text-gray-700">
+                              {item.subItems.map((subItem, subIndex) => (
+                                <li key={subIndex}>
+                                  <Link
+                                    to={subItem.path}
+                                    onClick={() =>
+                                      setDropdownOpen(false)
+                                    }
+                                    className="block px-6 py-3 hover:bg-gray-100 transition"
+                                  >
+                                    {subItem.label}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </>
+                      ) : (
+                        <Link
+                          to={item.path}
+                          onClick={() => setDropdownOpen(false)}
+                          className="block px-6 py-3 hover:bg-gray-100 transition"
+                        >
+                          {item.label}
+                        </Link>
+                      )}
                     </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </li>
 
-                    <li>
-                      <Link
-                        to="/item2"
-                        onClick={() => setDropdown1(false)}
-                        className="block px-6 py-3 hover:bg-gray-100"
-                      >
-                        Item 2
-                      </Link>
-                    </li>
+          {/* Contact */}
+          <li className="relative group">
+            <Link
+              to="/contact"
+              className="group-hover:text-blue-600 transition duration-300"
+            >
+              Contact
+            </Link>
 
-                    {/* Item 3 */}
-                    <li className="relative group">
-
-                      <div className="flex items-center justify-between px-6 py-3 hover:bg-gray-100 cursor-pointer">
-
-                        <span>Item 3</span>
-
-                        <IoChevronDownOutline className="-rotate-90" />
-
-                      </div>
-
-                      {/* Sub Dropdown */}
-                      <div className="lg:absolute lg:top-0 lg:left-full lg:w-56 bg-white rounded-xl shadow-xl py-3 hidden group-hover:block">
-
-                        <ul className="flex flex-col text-gray-700">
-
-                          <li>
-                            <Link
-                              to="/subitem1"
-                              onClick={() => setDropdown1(false)}
-                              className="block px-6 py-3 hover:bg-gray-100"
-                            >
-                              Sub Item 1
-                            </Link>
-                          </li>
-
-                          <li>
-                            <Link
-                              to="/subitem2"
-                              onClick={() => setDropdown1(false)}
-                              className="block px-6 py-3 hover:bg-gray-100"
-                            >
-                              Sub Item 2
-                            </Link>
-                          </li>
-
-                          <li>
-                            <Link
-                              to="/subitem3"
-                              onClick={() => setDropdown1(false)}
-                              className="block px-6 py-3 hover:bg-gray-100"
-                            >
-                              Sub Item 3
-                            </Link>
-                          </li>
-
-                          <li>
-                            <Link
-                              to="/subitem4"
-                              onClick={() => setDropdown1(false)}
-                              className="block px-6 py-3 hover:bg-gray-100"
-                            >
-                              Sub Item 4
-                            </Link>
-                          </li>
-
-                        </ul>
-
-                      </div>
-
-                    </li>
-
-                    <li>
-                      <Link
-                        to="/item4"
-                        onClick={() => setDropdown1(false)}
-                        className="block px-6 py-3 hover:bg-gray-100"
-                      >
-                        Item 4
-                      </Link>
-                    </li>
-
-                  </ul>
-
-                </div>
-              )}
-
-            </li>
-
-            {/* Contact */}
-            <li className="relative group">
-
-              <Link
-                to="/contact"
-                className="group-hover:text-blue-600 transition duration-300"
-              >
-                Contact
-              </Link>
-
-              <span className="absolute left-0 -bottom-1 h-[3px] w-0 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-
-            </li>
-
-          </ul>
-
-        </div>
-      </nav>
-    </>
+            <span className="absolute left-0 -bottom-1 h-[3px] w-0 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+          </li>
+        </ul>
+      </div>
+    </nav>
   );
 };
 

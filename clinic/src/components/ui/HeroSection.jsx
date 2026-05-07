@@ -12,7 +12,7 @@ import {
 const HeroSection = () => {
   return (
     <>
-      <section className="bg-[#f5f7fc] min-h-screen flex items-center">
+      <section className="bg-[#f5f7fc] min-h-screen flex items-center ">
 
         <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-2 gap-10 items-center">
 

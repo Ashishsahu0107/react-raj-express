@@ -65,7 +65,7 @@ const Services = () => {
   return (
     <>
       {/* Heading Section */}
-      <div className="text-center mb-16">
+      <div className="text-center mb-16 pt-20">
 
         <motion.h2
           initial={{ opacity: 0, y: 40 }}
